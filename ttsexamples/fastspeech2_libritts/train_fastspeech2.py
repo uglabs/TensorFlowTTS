@@ -33,7 +33,8 @@ import yaml
 import json
 
 import tensorflow_tts
-from examples.fastspeech2_libritts.fastspeech2_dataset import (
+
+from ttsexamples.fastspeech2_libritts.fastspeech2_dataset import (
     CharactorDurationF0EnergyMelDataset,
 )
 from tensorflow_tts.configs import FastSpeech2Config
