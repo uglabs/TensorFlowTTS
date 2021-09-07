@@ -44,3 +44,10 @@ CUDA_VISIBLE_DEVICES=0 python ttsexamples/tacotron2/extract_duration.py \
   --batch-size 32 \
   --win-front 3 \
   --win-back 3
+
+
+
+get the file
+
+
+  wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=12jvEO1VqFo1ocrgY9GUHF_kVcLn3QaGW' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=12jvEO1VqFo1ocrgY9GUHF_kVcLn3QaGW" -O model-120000.h5 && rm -rf /tmp/cookies.txt
