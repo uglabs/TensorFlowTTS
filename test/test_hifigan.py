@@ -30,7 +30,7 @@ from tensorflow_tts.models import (
     TFMelGANMultiScaleDiscriminator,
 )
 
-from examples.hifigan.train_hifigan import TFHifiGANDiscriminator
+from ttsexamples.hifigan.train_hifigan import TFHifiGANDiscriminator
 
 os.environ["CUDA_VISIBLE_DEVICES"] = ""
 

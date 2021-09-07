@@ -24,7 +24,7 @@ from tensorflow_tts.configs import FastSpeech2Config
 from tensorflow_tts.models import TFFastSpeech2
 from tensorflow_tts.utils import return_strategy
 
-from examples.fastspeech2.train_fastspeech2 import FastSpeech2Trainer
+from ttsexamples.fastspeech2.train_fastspeech2 import FastSpeech2Trainer
 
 os.environ["CUDA_VISIBLE_DEVICES"] = ""
 

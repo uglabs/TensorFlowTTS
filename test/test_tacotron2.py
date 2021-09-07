@@ -26,7 +26,7 @@ from tensorflow_tts.configs import Tacotron2Config
 from tensorflow_tts.models import TFTacotron2
 from tensorflow_tts.utils import return_strategy
 
-from examples.tacotron2.train_tacotron2 import Tacotron2Trainer
+from ttsexamples.tacotron2.train_tacotron2 import Tacotron2Trainer
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 

@@ -34,8 +34,8 @@ import yaml
 
 import tensorflow_tts
 
-from examples.melgan.audio_mel_dataset import AudioMelDataset
-from examples.melgan.train_melgan import collater
+from ttsexamples.melgan.audio_mel_dataset import AudioMelDataset
+from ttsexamples.melgan.train_melgan import collater
 
 from tensorflow_tts.configs import (
     ParallelWaveGANGeneratorConfig,

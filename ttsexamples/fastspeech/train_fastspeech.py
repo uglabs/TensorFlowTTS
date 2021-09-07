@@ -32,7 +32,7 @@ import yaml
 
 import tensorflow_tts
 import tensorflow_tts.configs.fastspeech as FASTSPEECH_CONFIG
-from examples.fastspeech.fastspeech_dataset import CharactorDurationMelDataset
+from ttsexamples.fastspeech.fastspeech_dataset import CharactorDurationMelDataset
 from tensorflow_tts.models import TFFastSpeech
 from tensorflow_tts.optimizers import AdamWeightDecay, WarmUp
 from tensorflow_tts.trainers import Seq2SeqBasedTrainer

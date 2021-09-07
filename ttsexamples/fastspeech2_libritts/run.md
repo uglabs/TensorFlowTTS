@@ -25,3 +25,22 @@ https://github.com/TensorSpeech/TensorFlowTTS/tree/master/examples/mfa_extractio
   --dur_path ./libritts/durations
 
 (8) bash ttsexamples/fastspeech2_libritts/scripts/train_libri.sh
+
+=============================================================================
+
+
+(ug) shacharm@shachar-ThinkPad-T15g-Gen-1:~/Projects/ug/TensorFlowTTS$ CUDA_VISIBLE_DEVICES=0 python ttsexamples/tacotron2/extract_duration.py   --rootdir ./dump_libritts/train/   --outdir ./dump_libritts/train/durations/   --checkpoint ./ttsexamples/tacotron2/exp/train.tacotron2.v1/checkpoints/model-120000.h5   --use-norm 1   --config ./ttsexamples/tacotron2/conf/tacotron2.v1.yaml   --batch-size 32   --win-front 3   --win-back 3
+
+
+CUDA_VISIBLE_DEVICES=0 python ttsexamples/tacotron2/extract_duration.py   --rootdir ./dump_libritts/train/   --outdir ./dump_libritts/train/durations/   --checkpoint ./ttsexamples/tacotron2/exp/train.tacotron2.v1/checkpoints/model-120000.h5   --use-norm 1   --config ./ttsexamples/tacotron2/conf/config.yml   --batch-size 32
+
+
+CUDA_VISIBLE_DEVICES=0 python ttsexamples/tacotron2/extract_duration.py \
+  --rootdir ./dump_libritts/train/ \
+  --outdir ./dump_libritts/train/durations/ \
+  --checkpoint ./ttsexamples/tacotron2/exp/train.tacotron2.v1/checkpoints/model-120000.h5 \
+  --use-norm 1 \
+  --config ./ttsexamples/tacotron2/conf/tacotron2.v1.yaml \
+  --batch-size 32 \
+  --win-front 3 \
+  --win-back 3

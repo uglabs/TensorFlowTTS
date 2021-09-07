@@ -34,9 +34,9 @@ import yaml
 from tqdm import tqdm
 
 import tensorflow_tts
-from examples.melgan.audio_mel_dataset import AudioMelDataset
-from examples.melgan.train_melgan import collater
-from examples.melgan_stft.train_melgan_stft import MultiSTFTMelganTrainer
+from ttsexamples.melgan.audio_mel_dataset import AudioMelDataset
+from ttsexamples.melgan.train_melgan import collater
+from ttsexamples.melgan_stft.train_melgan_stft import MultiSTFTMelganTrainer
 from tensorflow_tts.configs import (
     HifiGANDiscriminatorConfig,
     HifiGANGeneratorConfig,
