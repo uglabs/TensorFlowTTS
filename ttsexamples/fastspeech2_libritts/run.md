@@ -133,10 +133,10 @@ tensorflow-tts-preprocess --rootdir ./LJSpeech-1.1 \
 
 tensorflow-tts-normalize --rootdir ./dump_ljspeech24 \
   --outdir ./dump_ljspeech24 \
-  --config preprocess/ljspeech_preprocess.yaml \
+  --config preprocess/ljspeech24_preprocess.yaml \
   --dataset ljspeech
 
-CUDA_VISIBLE_DEVICES=0 python ttsexamples/tacotron2/extract_duration.py \
+CUDA_VISIBLE_DEVICES=0,1 python ttsexamples/tacotron2/extract_duration.py \
   --rootdir ./dump_ljspeech24/train/ \
   --outdir ./dump_ljspeech24/train/durations/ \
   --checkpoint ./ttsexamples/tacotron2/exp/train.tacotron2.v1/checkpoints/model-120000.h5 \
@@ -161,10 +161,10 @@ CUDA_VISIBLE_DEVICES=0,1 python ttsexamples/fastspeech2/train_fastspeech2.py \
   --train-dir ./dump_ljspeech24/train/ \
   --dev-dir ./dump_ljspeech24/valid/ \
   --outdir ./ttsexamples/fastspeech2/exp/train.fastspeech2.v24/ \
-  --config ./ttsexamples/fastspeech2/conf/fastspeech2.v1.yaml \
+  --config ./ttsexamples/fastspeech2/conf/fastspeech2.v24.yaml \
   --use-norm 1 \
-  --f0-stat ./dump_ljspeech/stats_f0.npy \
-  --energy-stat ./dump_ljspeech/stats_energy.npy \
+  --f0-stat ./dump_ljspeech24/stats_f0.npy \
+  --energy-stat ./dump_ljspeech24/stats_energy.npy \
   --mixed_precision 1 \
   --resume ""
 
