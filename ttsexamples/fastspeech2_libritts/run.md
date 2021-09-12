@@ -81,15 +81,14 @@ tensorflow-tts-preprocess --rootdir ./LJSpeech-1.1 \
   --config preprocess/ljspeech_preprocess.yaml \
   --dataset ljspeech
 
-
 tensorflow-tts-normalize --rootdir ./dump_ljspeech \
   --outdir ./dump_ljspeech \
   --config preprocess/ljspeech_preprocess.yaml \
   --dataset ljspeech
 
-CUDA_VISIBLE_DEVICES=0 python ttsexamples/tacotron2/extract_duration.py \
-  --rootdir ./dump_libritts/train/ \
-  --outdir ./dump_libritts/train/durations/ \
+CUDA_VISIBLE_DEVICES=0,1 python ttsexamples/tacotron2/extract_duration.py \
+  --rootdir ./dump_ljspeech/train/ \
+  --outdir ./dump_ljspeech/train/durations/ \
   --checkpoint ./ttsexamples/tacotron2/exp/train.tacotron2.v1/checkpoints/model-120000.h5 \
   --use-norm 1 \
   --config ./ttsexamples/tacotron2/conf/tacotron2.v1.yaml \
@@ -97,12 +96,75 @@ CUDA_VISIBLE_DEVICES=0 python ttsexamples/tacotron2/extract_duration.py \
   --win-front 3 \
   --win-back 3
 
-CUDA_VISIBLE_DEVICES=0 python ttsexamples/tacotron2/extract_duration.py \
-  --rootdir ./dump_libritts/valid/ \
-  --outdir ./dump_libritts/valid/durations/ \
+CUDA_VISIBLE_DEVICES=0,1 python ttsexamples/tacotron2/extract_duration.py \
+  --rootdir ./dump_ljspeech/valid/ \
+  --outdir ./dump_ljspeech/valid/durations/ \
   --checkpoint ./ttsexamples/tacotron2/exp/train.tacotron2.v1/checkpoints/model-120000.h5 \
   --use-norm 1 \
   --config ./ttsexamples/tacotron2/conf/tacotron2.v1.yaml \
   --batch-size 32 \
   --win-front 3 \
   --win-back 3
+
+
+https://github.com/TensorSpeech/TensorFlowTTS/tree/1a5731ad246b8dccf01eb5f78d294b76f6779d5a/examples/fastspeech2
+
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python ttsexamples/fastspeech2/train_fastspeech2.py \
+
+CUDA_VISIBLE_DEVICES=0,1 python ttsexamples/fastspeech2/train_fastspeech2.py \
+  --train-dir ./dump_ljspeech/train/ \
+  --dev-dir ./dump_ljspeech/valid/ \
+  --outdir ./ttsexamples/fastspeech2/exp/train.fastspeech2.v1/ \
+  --config ./ttsexamples/fastspeech2/conf/fastspeech2.v1.yaml \
+  --use-norm 1 \
+  --f0-stat ./dump_ljspeech/stats_f0.npy \
+  --energy-stat ./dump_ljspeech/stats_energy.npy \
+  --mixed_precision 1 \
+  --resume ""
+
+
+----------------------------------------------------------------------------
+LJSpeech 24kHz
+
+tensorflow-tts-preprocess --rootdir ./LJSpeech-1.1 \
+  --outdir ./dump_ljspeech24 \
+  --config preprocess/ljspeech24_preprocess.yaml \
+  --dataset ljspeech
+
+tensorflow-tts-normalize --rootdir ./dump_ljspeech24 \
+  --outdir ./dump_ljspeech24 \
+  --config preprocess/ljspeech_preprocess.yaml \
+  --dataset ljspeech
+
+CUDA_VISIBLE_DEVICES=0 python ttsexamples/tacotron2/extract_duration.py \
+  --rootdir ./dump_ljspeech24/train/ \
+  --outdir ./dump_ljspeech24/train/durations/ \
+  --checkpoint ./ttsexamples/tacotron2/exp/train.tacotron2.v1/checkpoints/model-120000.h5 \
+  --use-norm 1 \
+  --config ./ttsexamples/tacotron2/conf/tacotron2.v1.yaml \
+  --batch-size 32 \
+  --win-front 3 \
+  --win-back 3
+
+CUDA_VISIBLE_DEVICES=0,1 python ttsexamples/tacotron2/extract_duration.py \
+  --rootdir ./dump_ljspeech24/valid/ \
+  --outdir ./dump_ljspeech24/valid/durations/ \
+  --checkpoint ./ttsexamples/tacotron2/exp/train.tacotron2.v1/checkpoints/model-120000.h5 \
+  --use-norm 1 \
+  --config ./ttsexamples/tacotron2/conf/tacotron2.v1.yaml \
+  --batch-size 32 \
+  --win-front 3 \
+  --win-back 3
+
+
+CUDA_VISIBLE_DEVICES=0,1 python ttsexamples/fastspeech2/train_fastspeech2.py \
+  --train-dir ./dump_ljspeech24/train/ \
+  --dev-dir ./dump_ljspeech24/valid/ \
+  --outdir ./ttsexamples/fastspeech2/exp/train.fastspeech2.v24/ \
+  --config ./ttsexamples/fastspeech2/conf/fastspeech2.v1.yaml \
+  --use-norm 1 \
+  --f0-stat ./dump_ljspeech/stats_f0.npy \
+  --energy-stat ./dump_ljspeech/stats_energy.npy \
+  --mixed_precision 1 \
+  --resume ""
+
