@@ -19,17 +19,20 @@ tensorflow-tts-preprocess --rootdir ./libritts \
   --config preprocess/libritts_preprocess.yaml \
   --dataset libritts
 
-(6) tensorflow-tts-normalize --rootdir ./dump_libritts \
+(6) 
+tensorflow-tts-normalize --rootdir ./dump_libritts \
   --outdir ./dump_libritts \
   --config preprocess/libritts_preprocess.yaml \
   --dataset libritts
 
-(7) python ttsexamples/mfa_extraction/fix_mismatch.py \
+(7) 
+python ttsexamples/mfa_extraction/fix_mismatch.py \
   --base_path ./dump_libritts \
-  --trimmed_dur_path ./dataset/trimmed-durations \
+  --trimmed_dur_path ./libritts/trimmed-durations \
   --dur_path ./libritts/durations
 
-(8) bash ttsexamples/fastspeech2_libritts/scripts/train_libri.sh
+(8) 
+bash ttsexamples/fastspeech2_libritts/scripts/train_libri.sh
 
 =============================================================================
 
@@ -66,11 +69,18 @@ get the data
 
 wget https://www.openslr.org/resources/60/train-clean-100.tar.gz
 
+
 some solution
 https://stackoverflow.com/questions/63199164/how-to-install-libcusolver-so-11
 
-sudo ln -s /usr/local/cuda-10.1/targets/x86_64-linux/lib/libcusolver.so.10 /usr/local/cuda-11.0/targets/x86_64-linux/lib/libcusolver.so.11
 
+
+sudo ln -s /usr/local/cuda-10.1/targets/x86_64-linux/lib/libcusolver.so.10 /usr/local/cuda-11.0/targets/x86_64-linux/lib/libcusolver.so.11
+sudo ln -s /usr/local/cuda/targets/x86_64-linux/lib/libcusolver.so.10 /usr/local/cuda/targets/x86_64-linux/lib/libcusolver.so.11
+
+export LD_LIBRARY_PATH=/usr/local/cuda-11.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+also to overcome loading cudnn 8.05 might be
+export LD_LIBRARY_PATH="/usr/lib/x86_64-linux-gnu":$LD_LIBRARY_PATH
 
 
 ----------------------------------------------------------------------------
@@ -168,3 +178,6 @@ CUDA_VISIBLE_DEVICES=0,1 python ttsexamples/fastspeech2/train_fastspeech2.py \
   --mixed_precision 1 \
   --resume ""
 
+=============================================================================
+
+CUDA_VISIBLE_DEVICES=0,1,2,3 python ttsexamples/tacotron2/train_tacotron2.py   --train-dir ./dump_libritts/train/   --dev-dir ./dump_libritts/valid/   --outdir ./ttsexamples/tacotron2/exp/train.tacotron2.libritts.v1/   --config ./ttsexamples/tacotron2/conf/tacotron2.libritts.v1.yaml   --use-norm 1   --mixed_precision 0   --resume ""
