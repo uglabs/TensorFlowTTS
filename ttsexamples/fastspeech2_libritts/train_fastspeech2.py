@@ -379,7 +379,7 @@ def main():
     n_speakers = config["fastspeech2_params"]["n_speakers"]
     assert n_speakers == len(
         speakers_map
-    ), f"Number of speakers in dataset does not match n_speakers in config"
+    ), "Number of speakers in dataset ({}) does not match n_speakers in config ({})".format(len(speakers_map), n_speakers)
 
     # define train/valid dataset
     train_dataset = CharactorDurationF0EnergyMelDataset(
