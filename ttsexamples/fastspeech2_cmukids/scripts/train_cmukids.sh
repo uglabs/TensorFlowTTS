@@ -1,0 +1,12 @@
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python ttsexamples/fastspeech2_cmukids/train_fastspeech2.py \
+  --train-dir ./dump_cmukids/train/ \
+  --dev-dir ./dump_cmukids/valid/ \
+  --outdir ./ttsexamples/fastspeech2_cmukids/outdir_libri/ \
+  --config ./ttsexamples/fastspeech2_cmukids/conf/fastspeech2cmukids.yaml \
+  --use-norm 1 \
+  --f0-stat ./dump_cmukids/stats_f0.npy \
+  --energy-stat ./dump_cmukids/stats_energy.npy \
+  --mixed_precision 0 \
+  --dataset_config preprocess/cmukids_preprocess.yaml \
+  --dataset_stats dump_cmukids/stats.npy \
+  --dataset_mapping dump_cmukids/libritts_mapper.json
