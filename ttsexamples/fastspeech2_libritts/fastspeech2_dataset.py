@@ -119,7 +119,18 @@ class CharactorDurationF0EnergyMelDataset(AbstractDataset):
         self.energy_load_fn = energy_load_fn
         self.mel_length_threshold = mel_length_threshold
         self.speakers_map = speakers_map
-        self.speakers = [self.speakers_map[i.split("_")[0]] for i in self.utt_ids]
+        #self.speakers = [self.speakers_map[i.split("_")[0]] for i in self.utt_ids]
+        self.speakers = []
+        
+        valid_utt_ids = []
+        for i in self.utt_ids:
+            try:
+                self.speakers.append(self.speakers_map[i.split("_")[0]])
+                valid_utt_ids.append(i)
+            except:
+                pass
+        self.utt_ids = valid_utt_ids
+        
         print("Speaker: utt_id", list(zip(self.speakers, self.utt_ids)))
         self.f0_stat = np.load(f0_stat)
         self.energy_stat = np.load(energy_stat)
