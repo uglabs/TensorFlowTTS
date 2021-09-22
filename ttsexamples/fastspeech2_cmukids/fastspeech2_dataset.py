@@ -122,10 +122,12 @@ class CharactorDurationF0EnergyMelDataset(AbstractDataset):
         #self.speakers = [self.speakers_map[i.split("_")[0]] for i in self.utt_ids]
         self.speakers = []
         valid_utt_ids = []
-        import ipdb; ipdb.set_trace()
         for i in self.utt_ids:
             try:
-                self.speakers.append(self.speakers_map[i.split("_")[0]])
+                if "_" in i:
+                    self.speakers.append(self.speakers_map[i.split("_")[0]])
+                else:
+                    self.speakers.append(self.speakers_map[i[:4]])
                 valid_utt_ids.append(i)
             except:
                 pass
